@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+p{
+	margin: 0;
+	padding: 0;
+}
+#div1{
+	width: 400px;
+	height: 300px;
+	border: 1px solid;
+	margin: 100px auto;
+}
+#div1 div{
+	width: 100%;
+	height: 280px;
+	background: #ccc;
+	display: none;
+}
+.active{
+	background: yellow;
+}
+input{
+	width: 20%;
+	height: 20px;
+}
+</style>
+<script>
+window.onload = function()
+{
+	var oDiv = document.getElementById("div1");
+	var aBtn = oDiv.getElementsByTagName("input");
+	var aDiv = oDiv.getElementsByTagName("div");
+	
+	for(var i = 0; i<aBtn.length; i++) //循环历遍onclick事件
+	{
+		aBtn[i].index = i;				//index是自定义属性
+		aBtn[i].onclick = function()
+		{
+			for(var i = 0; i<aBtn.length; i++)//循环历遍去掉button样式和把div隐藏
+			{
+				aBtn[i].className = "";
+				aDiv[i].style.display = "none";
+			}
+			this.className = "active";//当前按钮添加样式
+			aDiv[this.index].style.display = "block";//div显示 this.index是当前div 即div[0]
+		};
+	}
+};
+</script>
+</head>
+<body>
+<div id="div1">
+	<input type="button" id="btn1" class="active" value="第一" />
+	<input type="button" id="btn2" value="第二" />
+	<input type="button" id="btn3" value="第三" />
+	<input type="button" id="btn4" value="第四" />
+	<div style="display: block;">1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+</div>
+
+<button id="btn1" onclick="nihao()"></button>
+</body>
+<script>
+function nihao()
+{
+	alert(111)
+};
+</script>
+</html>
